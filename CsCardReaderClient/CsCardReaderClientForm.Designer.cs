@@ -35,15 +35,17 @@
             this.lbl_cardImage = new System.Windows.Forms.Label();
             this.btn_openImageFolder = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tpg_gatherFetcher = new System.Windows.Forms.TabPage();
-            this.btn_testCardReading = new System.Windows.Forms.Button();
             this.tpg_readMagicCard = new System.Windows.Forms.TabPage();
             this.tbx_diskResults = new System.Windows.Forms.TextBox();
             this.btn_readMagicCard = new System.Windows.Forms.Button();
+            this.tpg_gatherFetcher = new System.Windows.Forms.TabPage();
+            this.btn_testCardReading = new System.Windows.Forms.Button();
+            this.pbx_extractedCardImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tpg_gatherFetcher.SuspendLayout();
             this.tpg_readMagicCard.SuspendLayout();
+            this.tpg_gatherFetcher.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_fetchCard
@@ -112,6 +114,37 @@
             this.tabControl1.Size = new System.Drawing.Size(597, 426);
             this.tabControl1.TabIndex = 6;
             // 
+            // tpg_readMagicCard
+            // 
+            this.tpg_readMagicCard.Controls.Add(this.pbx_extractedCardImage);
+            this.tpg_readMagicCard.Controls.Add(this.tbx_diskResults);
+            this.tpg_readMagicCard.Controls.Add(this.btn_readMagicCard);
+            this.tpg_readMagicCard.Location = new System.Drawing.Point(4, 22);
+            this.tpg_readMagicCard.Name = "tpg_readMagicCard";
+            this.tpg_readMagicCard.Padding = new System.Windows.Forms.Padding(3);
+            this.tpg_readMagicCard.Size = new System.Drawing.Size(589, 400);
+            this.tpg_readMagicCard.TabIndex = 1;
+            this.tpg_readMagicCard.Text = "Card Reader Result";
+            this.tpg_readMagicCard.UseVisualStyleBackColor = true;
+            // 
+            // tbx_diskResults
+            // 
+            this.tbx_diskResults.Location = new System.Drawing.Point(8, 117);
+            this.tbx_diskResults.Multiline = true;
+            this.tbx_diskResults.Name = "tbx_diskResults";
+            this.tbx_diskResults.Size = new System.Drawing.Size(355, 277);
+            this.tbx_diskResults.TabIndex = 1;
+            // 
+            // btn_readMagicCard
+            // 
+            this.btn_readMagicCard.Location = new System.Drawing.Point(209, 30);
+            this.btn_readMagicCard.Name = "btn_readMagicCard";
+            this.btn_readMagicCard.Size = new System.Drawing.Size(129, 55);
+            this.btn_readMagicCard.TabIndex = 0;
+            this.btn_readMagicCard.Text = "Read Magic Card";
+            this.btn_readMagicCard.UseVisualStyleBackColor = true;
+            this.btn_readMagicCard.Click += new System.EventHandler(this.btn_readMagicCard_Click);
+            // 
             // tpg_gatherFetcher
             // 
             this.tpg_gatherFetcher.Controls.Add(this.btn_testCardReading);
@@ -139,35 +172,13 @@
             this.btn_testCardReading.UseVisualStyleBackColor = true;
             this.btn_testCardReading.Click += new System.EventHandler(this.btn_testCardReading_Click);
             // 
-            // tpg_readMagicCard
+            // pbx_extractedCardImage
             // 
-            this.tpg_readMagicCard.Controls.Add(this.tbx_diskResults);
-            this.tpg_readMagicCard.Controls.Add(this.btn_readMagicCard);
-            this.tpg_readMagicCard.Location = new System.Drawing.Point(4, 22);
-            this.tpg_readMagicCard.Name = "tpg_readMagicCard";
-            this.tpg_readMagicCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tpg_readMagicCard.Size = new System.Drawing.Size(589, 400);
-            this.tpg_readMagicCard.TabIndex = 1;
-            this.tpg_readMagicCard.Text = "Card Reader Result";
-            this.tpg_readMagicCard.UseVisualStyleBackColor = true;
-            // 
-            // tbx_diskResults
-            // 
-            this.tbx_diskResults.Location = new System.Drawing.Point(8, 117);
-            this.tbx_diskResults.Multiline = true;
-            this.tbx_diskResults.Name = "tbx_diskResults";
-            this.tbx_diskResults.Size = new System.Drawing.Size(573, 277);
-            this.tbx_diskResults.TabIndex = 1;
-            // 
-            // btn_readMagicCard
-            // 
-            this.btn_readMagicCard.Location = new System.Drawing.Point(209, 30);
-            this.btn_readMagicCard.Name = "btn_readMagicCard";
-            this.btn_readMagicCard.Size = new System.Drawing.Size(129, 55);
-            this.btn_readMagicCard.TabIndex = 0;
-            this.btn_readMagicCard.Text = "Read Magic Card";
-            this.btn_readMagicCard.UseVisualStyleBackColor = true;
-            this.btn_readMagicCard.Click += new System.EventHandler(this.btn_readMagicCard_Click);
+            this.pbx_extractedCardImage.Location = new System.Drawing.Point(369, 117);
+            this.pbx_extractedCardImage.Name = "pbx_extractedCardImage";
+            this.pbx_extractedCardImage.Size = new System.Drawing.Size(212, 277);
+            this.pbx_extractedCardImage.TabIndex = 2;
+            this.pbx_extractedCardImage.TabStop = false;
             // 
             // CsCardReaderClientForm
             // 
@@ -181,10 +192,11 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tpg_gatherFetcher.ResumeLayout(false);
-            this.tpg_gatherFetcher.PerformLayout();
             this.tpg_readMagicCard.ResumeLayout(false);
             this.tpg_readMagicCard.PerformLayout();
+            this.tpg_gatherFetcher.ResumeLayout(false);
+            this.tpg_gatherFetcher.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -203,6 +215,7 @@
         private System.Windows.Forms.TextBox tbx_diskResults;
         private System.Windows.Forms.Button btn_readMagicCard;
         private System.Windows.Forms.Button btn_testCardReading;
+        private System.Windows.Forms.PictureBox pbx_extractedCardImage;
     }
 }
 

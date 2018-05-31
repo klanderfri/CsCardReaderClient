@@ -30,7 +30,7 @@ namespace CsCardReaderClient
 
             var card = getCard(cardID);
             lbl_cardImage.Text = card.Name;
-            showImage(card);
+            showImage(pbx_cardImage, card);
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -73,13 +73,19 @@ namespace CsCardReaderClient
             return true;
         }
 
-        private void showImage(Card card)
+        private void showImage(PictureBox box, Card card)
         {
             card.LoadImage();
-            pbx_cardImage.ImageLocation = card.ImagePath;
+            showImage(box, card.ImagePath);
             PathOfCurrentlyDisplayedImage = card.ImagePath;
         }
 
+        private void showImage(PictureBox box, string fullImagePath)
+        {
+            box.SizeMode = PictureBoxSizeMode.StretchImage;
+            box.ImageLocation = fullImagePath;
+        }
+        
         private Card getCard(int intCardID)
         {
             if (!Cards.ContainsKey(intCardID))
@@ -116,7 +122,8 @@ namespace CsCardReaderClient
             var myPictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             var openFile = new OpenFileDialog()
             {
-                Multiselect = true,
+                Multiselect = false,
+                Filter = "JPEG Files (*.jpg;*.jpeg)|*.JPG;*.JPEG",
                 InitialDirectory = myPictures
             };
 
@@ -131,12 +138,60 @@ namespace CsCardReaderClient
                     input.AppendFormat("{0};", file);
                 }
             }
-            
+
             var inBytes = Encoding.ASCII.GetBytes(input.ToString());
             int maxLength = 3000;
             byte[] result = new byte[maxLength];
             MtgLibrary.ReadCardTitles(inBytes, result, maxLength);
             string str = Encoding.Default.GetString(result);
+
+            var values = str.Split(';').Reverse().Skip(1).Reverse().ToList();
+            var display = new StringBuilder();
+            var imageFilePaths = new List<string>(values.Count / 5);
+            for (int i = 0; i < values.Count; i += 5)
+            {
+                var extractedImagePath = Path.Combine(outputFolder, "Extracted Cards", Path.GetFileName(values[i]));
+                imageFilePaths.Add(extractedImagePath);
+
+                display.AppendLine(String.Format("Card name: {0}", values[i + 1]));
+                display.AppendLine(String.Format("Card type: {0}", getCardType(Convert.ToInt32(values[i + 2]))));
+                display.AppendLine(String.Format("OCR confidence: {0}", Convert.ToInt32(values[i + 3])));
+                display.AppendLine(String.Format("Success: {0}", Convert.ToBoolean(Convert.ToInt32(values[i + 4])) ? "True" : "False"));
+                display.AppendLine();
+            }
+
+            tbx_diskResults.Text = display.ToString();
+
+            showImage(pbx_extractedCardImage, imageFilePaths.First());
+        }
+
+        private string getCardType(int titleType)
+        {
+            switch (titleType)
+            {
+                case 1:
+                    return "NormalTitle";
+                case 2:
+                    return "SplitCardTitle";
+                case 3:
+                    return "AkhSplitCardTitle";
+                case 4:
+                    return "TransformedTitle";
+                case 5:
+                    return "FutureSightTitle";
+                case 6:
+                    return "AmonkhetInvocationsTitle";
+                case 7:
+                    return "Emblem";
+                case 8:
+                    return "Token";
+                case 9:
+                    return "Backside";
+                case 10:
+                    return "Commercial";
+                default:
+                    return "Unknown card type!";
+            }
         }
 
         private List<CardTitle> extractCardTitles()
