@@ -82,6 +82,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="tessdata\eng.traineddata" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -106,6 +107,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug (xcopy "$(ProjectDir)debugdll\*.dll" "$(TargetDir)" /Y) else (xcopy "$(ProjectDir)dll\*.dll" "$(TargetDir)" /Y)</PostBuildEvent>
+    <PostBuildEvent>if $(ConfigurationName) == Debug (xcopy "$(ProjectDir)debugdll\*.dll" "$(TargetDir)" /Y) else (xcopy "$(ProjectDir)dll\*.dll" "$(TargetDir)" /Y)
+xcopy /Y "$(ProjectDir)tessdata\eng.traineddata" "$(TargetDir)tessdata\"</PostBuildEvent>
   </PropertyGroup>
 </Project>

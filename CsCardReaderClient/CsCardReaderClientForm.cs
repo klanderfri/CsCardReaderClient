@@ -122,7 +122,7 @@ namespace CsCardReaderClient
 
             var input = new StringBuilder();
             var outputFolder = Path.Combine(myPictures, "MtG Read Client");
-            input.AppendFormat("1;1;1;0;{0};", outputFolder);
+            input.AppendFormat("0;1;1;0;{0};", outputFolder);
 
             if (openFile.ShowDialog() == DialogResult.OK)
             {
