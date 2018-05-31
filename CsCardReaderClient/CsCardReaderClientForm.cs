@@ -96,22 +96,47 @@ namespace CsCardReaderClient
         //Image file name	Image file path	Card name	Card type	OCR confidence	Success
 
 
-        private void btn_fetchResults_Click(object sender, EventArgs e)
+        private void btn_readMagicCard_Click(object sender, EventArgs e)
         {
-            var cards = extractCardTitles();
+            //var cards = extractCardTitles();
 
-            int totalConfidence = cards.Sum(c => c.Confidence);
-            int lowestConfidence = cards.Min(c => c.Confidence);
-            double averageConfidens = totalConfidence / (double)cards.Count;
-            bool wasSuccessful = (cards.FindIndex(c => !c.Success) < 0);
+            //int totalConfidence = cards.Sum(c => c.Confidence);
+            //int lowestConfidence = cards.Min(c => c.Confidence);
+            //double averageConfidens = totalConfidence / (double)cards.Count;
+            //bool wasSuccessful = (cards.FindIndex(c => !c.Success) < 0);
 
-            var message = new StringBuilder();
-            message.AppendLine(String.Format("Total confidence: {0}", totalConfidence));
-            message.AppendLine(String.Format("Lowest confidence: {0}", lowestConfidence));
-            message.AppendLine(String.Format("Average confidence: {0}", averageConfidens));
-            message.AppendLine(String.Format("Read was successful: {0}", wasSuccessful ? "Yes" : "No"));
+            //var message = new StringBuilder();
+            //message.AppendLine(String.Format("Total confidence: {0}", totalConfidence));
+            //message.AppendLine(String.Format("Lowest confidence: {0}", lowestConfidence));
+            //message.AppendLine(String.Format("Average confidence: {0}", averageConfidens));
+            //message.AppendLine(String.Format("Read was successful: {0}", wasSuccessful ? "Yes" : "No"));
 
-            tbx_diskResults.Text = message.ToString();
+            //tbx_diskResults.Text = message.ToString();
+
+            var myPictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            var openFile = new OpenFileDialog()
+            {
+                Multiselect = true,
+                InitialDirectory = myPictures
+            };
+
+            var input = new StringBuilder();
+            var outputFolder = Path.Combine(myPictures, "MtG Read Client");
+            input.AppendFormat("1;1;1;0;{0};", outputFolder);
+
+            if (openFile.ShowDialog() == DialogResult.OK)
+            {
+                foreach (var file in openFile.FileNames)
+                {
+                    input.AppendFormat("{0};", file);
+                }
+            }
+            
+            var inBytes = Encoding.ASCII.GetBytes(input.ToString());
+            int maxLength = 3000;
+            byte[] result = new byte[maxLength];
+            MtgLibrary.ReadCardTitles(inBytes, result, maxLength);
+            string str = Encoding.Default.GetString(result);
         }
 
         private List<CardTitle> extractCardTitles()
