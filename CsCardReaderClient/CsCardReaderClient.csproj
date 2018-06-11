@@ -87,10 +87,23 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="debugdll\" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="debugdll\boost_filesystem-vc141-mt-gd-x32-1_66.dll" />
+    <Content Include="debugdll\boost_system-vc141-mt-gd-x32-1_66.dll" />
+    <Content Include="debugdll\CardReaderLibrary.dll" />
+    <Content Include="debugdll\gif.dll" />
+    <Content Include="debugdll\jpeg62.dll" />
+    <Content Include="debugdll\leptonica-1.74.4d.dll" />
+    <Content Include="debugdll\libpng16d.dll" />
+    <Content Include="debugdll\lzma.dll" />
+    <Content Include="debugdll\opencv_core341d.dll" />
+    <Content Include="debugdll\opencv_highgui341d.dll" />
+    <Content Include="debugdll\opencv_imgcodecs341d.dll" />
+    <Content Include="debugdll\opencv_imgproc341d.dll" />
+    <Content Include="debugdll\opencv_videoio341d.dll" />
+    <Content Include="debugdll\tiffd.dll" />
+    <Content Include="debugdll\zlibd1.dll" />
     <Content Include="dll\boost_filesystem-vc141-mt-x32-1_66.dll" />
     <Content Include="dll\boost_system-vc141-mt-x32-1_66.dll" />
     <Content Include="dll\CardReaderLibrary.dll" />
