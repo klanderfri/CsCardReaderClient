@@ -121,6 +121,6 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == Debug (xcopy "$(ProjectDir)debugdll\*.dll" "$(TargetDir)" /Y) else (xcopy "$(ProjectDir)dll\*.dll" "$(TargetDir)" /Y)
-xcopy /Y "$(ProjectDir)tessdata\eng.traineddata" "$(TargetDir)tessdata\"</PostBuildEvent>
+xcopy "$(ProjectDir)tessdata\*.traineddata" "$(TargetDir)tessdata\" /Y</PostBuildEvent>
   </PropertyGroup>
 </Project>
