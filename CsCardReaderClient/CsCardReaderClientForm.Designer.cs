@@ -36,16 +36,17 @@
             this.btn_openImageFolder = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpg_readMagicCard = new System.Windows.Forms.TabPage();
+            this.pbx_extractedCardImage = new System.Windows.Forms.PictureBox();
             this.tbx_diskResults = new System.Windows.Forms.TextBox();
             this.btn_readMagicCard = new System.Windows.Forms.Button();
             this.tpg_gatherFetcher = new System.Windows.Forms.TabPage();
+            this.btn_openExePath = new System.Windows.Forms.Button();
             this.btn_testCardReading = new System.Windows.Forms.Button();
-            this.pbx_extractedCardImage = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tpg_readMagicCard.SuspendLayout();
-            this.tpg_gatherFetcher.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).BeginInit();
+            this.tpg_gatherFetcher.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_fetchCard
@@ -127,6 +128,14 @@
             this.tpg_readMagicCard.Text = "Card Reader Result";
             this.tpg_readMagicCard.UseVisualStyleBackColor = true;
             // 
+            // pbx_extractedCardImage
+            // 
+            this.pbx_extractedCardImage.Location = new System.Drawing.Point(369, 117);
+            this.pbx_extractedCardImage.Name = "pbx_extractedCardImage";
+            this.pbx_extractedCardImage.Size = new System.Drawing.Size(212, 277);
+            this.pbx_extractedCardImage.TabIndex = 2;
+            this.pbx_extractedCardImage.TabStop = false;
+            // 
             // tbx_diskResults
             // 
             this.tbx_diskResults.Location = new System.Drawing.Point(8, 117);
@@ -147,6 +156,7 @@
             // 
             // tpg_gatherFetcher
             // 
+            this.tpg_gatherFetcher.Controls.Add(this.btn_openExePath);
             this.tpg_gatherFetcher.Controls.Add(this.btn_testCardReading);
             this.tpg_gatherFetcher.Controls.Add(this.pbx_cardImage);
             this.tpg_gatherFetcher.Controls.Add(this.btn_openImageFolder);
@@ -162,6 +172,16 @@
             this.tpg_gatherFetcher.Text = "The Gatherer";
             this.tpg_gatherFetcher.UseVisualStyleBackColor = true;
             // 
+            // btn_openExePath
+            // 
+            this.btn_openExePath.Location = new System.Drawing.Point(32, 210);
+            this.btn_openExePath.Name = "btn_openExePath";
+            this.btn_openExePath.Size = new System.Drawing.Size(175, 23);
+            this.btn_openExePath.TabIndex = 7;
+            this.btn_openExePath.Text = "Open exe Path";
+            this.btn_openExePath.UseVisualStyleBackColor = true;
+            this.btn_openExePath.Click += new System.EventHandler(this.btn_openExePath_Click);
+            // 
             // btn_testCardReading
             // 
             this.btn_testCardReading.Location = new System.Drawing.Point(32, 180);
@@ -171,14 +191,6 @@
             this.btn_testCardReading.Text = "Test Card Reading";
             this.btn_testCardReading.UseVisualStyleBackColor = true;
             this.btn_testCardReading.Click += new System.EventHandler(this.btn_testCardReading_Click);
-            // 
-            // pbx_extractedCardImage
-            // 
-            this.pbx_extractedCardImage.Location = new System.Drawing.Point(369, 117);
-            this.pbx_extractedCardImage.Name = "pbx_extractedCardImage";
-            this.pbx_extractedCardImage.Size = new System.Drawing.Size(212, 277);
-            this.pbx_extractedCardImage.TabIndex = 2;
-            this.pbx_extractedCardImage.TabStop = false;
             // 
             // CsCardReaderClientForm
             // 
@@ -194,9 +206,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tpg_readMagicCard.ResumeLayout(false);
             this.tpg_readMagicCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).EndInit();
             this.tpg_gatherFetcher.ResumeLayout(false);
             this.tpg_gatherFetcher.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -216,6 +228,7 @@
         private System.Windows.Forms.Button btn_readMagicCard;
         private System.Windows.Forms.Button btn_testCardReading;
         private System.Windows.Forms.PictureBox pbx_extractedCardImage;
+        private System.Windows.Forms.Button btn_openExePath;
     }
 }
 

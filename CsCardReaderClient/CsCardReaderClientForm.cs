@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -49,8 +50,24 @@ namespace CsCardReaderClient
                 return;
             }
 
-            var folderPath = new FileInfo(PathOfCurrentlyDisplayedImage).Directory.FullName;
+            openFolder(PathOfCurrentlyDisplayedImage);
+        }
+
+        private void openFolder(string pathToOpen)
+        {
+            var folderPath = isFolder(pathToOpen)? pathToOpen: new FileInfo(pathToOpen).Directory.FullName;
             Process.Start(folderPath);
+        }
+
+        private bool isFolder(string path)
+        {
+            //Implemented as suggested at:
+            //https://stackoverflow.com/a/1395226/1997617
+
+            var attr = File.GetAttributes(path);
+            var isFolderPath = attr.HasFlag(FileAttributes.Directory);
+
+            return isFolderPath;
         }
 
         private bool tryGetCardID(out int cardID)
@@ -270,6 +287,13 @@ namespace CsCardReaderClient
             string str = Encoding.Default.GetString(result);
 
             MessageBox.Show(str, "Card Read Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btn_openExePath_Click(object sender, EventArgs e)
+        {
+            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            MessageBox.Show(path, "Exe File Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            openFolder(path);
         }
     }
 }
