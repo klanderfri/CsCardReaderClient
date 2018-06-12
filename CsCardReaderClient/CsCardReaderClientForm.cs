@@ -31,7 +31,8 @@ namespace CsCardReaderClient
 
             var card = getCard(IdOfCurrentlyDisplayedImage);
             lbl_cardImage.Text = card.Name;
-            showImage(pbx_cardImage, card);
+            Utilities.ShowImage(pbx_cardImage, card);
+            PathOfCurrentlyDisplayedImage = card.ImagePath;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -50,30 +51,13 @@ namespace CsCardReaderClient
                 return;
             }
 
-            openFolder(PathOfCurrentlyDisplayedImage);
+            Utilities.OpenFolder(PathOfCurrentlyDisplayedImage);
         }
 
         private void btn_openGathererWebpage_Click(object sender, EventArgs e)
         {
             var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", IdOfCurrentlyDisplayedImage);
             Process.Start(url);
-        }
-
-        private void openFolder(string pathToOpen)
-        {
-            var folderPath = isFolder(pathToOpen)? pathToOpen: new FileInfo(pathToOpen).Directory.FullName;
-            Process.Start(folderPath);
-        }
-
-        private bool isFolder(string path)
-        {
-            //Implemented as suggested at:
-            //https://stackoverflow.com/a/1395226/1997617
-
-            var attr = File.GetAttributes(path);
-            var isFolderPath = attr.HasFlag(FileAttributes.Directory);
-
-            return isFolderPath;
         }
 
         private bool tryGetCardID(out int cardID)
@@ -95,23 +79,6 @@ namespace CsCardReaderClient
 
             return true;
         }
-
-        private void showImage(PictureBox box, Card card)
-        {
-            card.LoadImage();
-
-            var image = Image.FromFile(card.ImagePath);
-            box.Size = new Size(image.Width, image.Height);
-
-            showImage(box, card.ImagePath);
-            PathOfCurrentlyDisplayedImage = card.ImagePath;
-        }
-
-        private void showImage(PictureBox box, string fullImagePath)
-        {
-            box.SizeMode = PictureBoxSizeMode.StretchImage;
-            box.ImageLocation = fullImagePath;
-        }
         
         private Card getCard(int intCardID)
         {
@@ -130,7 +97,7 @@ namespace CsCardReaderClient
         {
             var decoder = new CardDecoder();
             tbx_diskResults.Text = decoder.Decode();
-            showImage(pbx_extractedCardImage, decoder.PathsToExtractedImages.FirstOrDefault());
+            Utilities.ShowImage(pbx_extractedCardImage, decoder.PathsToExtractedImages.FirstOrDefault());
         }
         
         private void btn_testCardReading_Click(object sender, EventArgs e)
@@ -149,7 +116,7 @@ namespace CsCardReaderClient
         {
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             MessageBox.Show(path, "Exe File Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            openFolder(path);
+            Utilities.OpenFolder(path);
         }
     }
 }
