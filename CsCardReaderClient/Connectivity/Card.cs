@@ -1,11 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
+using System.Windows.Forms;
 
 namespace CsCardReaderClient.Connectivity
 {
@@ -24,12 +22,20 @@ namespace CsCardReaderClient.Connectivity
 
         public bool LoadData()
         {
-            string uri = String.Format("https://api.magicthegathering.io/v1/cards/{0}", MultiverseID);
-            string htm_Result = Connection.MakeGetRequest(uri);
-            var jsn_Result = JObject.Parse(htm_Result);
+            try
+            {
+                string uri = String.Format("https://api.magicthegathering.io/v1/cards/{0}", MultiverseID);
+                string htm_Result = Connection.MakeGetRequest(uri);
+                var jsn_Result = JObject.Parse(htm_Result);
 
-            Json = jsn_Result["card"];
-            Name = (string)Json["name"];
+                Json = jsn_Result["card"];
+                Name = (string)Json["name"];
+            }
+            catch (WebException ex)
+            {
+                MessageBox.Show(ex.Message, "Error when loading card", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
             return true;
         }

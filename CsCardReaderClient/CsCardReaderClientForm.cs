@@ -30,9 +30,13 @@ namespace CsCardReaderClient
             if (!tryGetCardID(out IdOfCurrentlyDisplayedImage)) { return; }
 
             var card = getCard(IdOfCurrentlyDisplayedImage);
-            lbl_cardImage.Text = card.Name;
-            Utilities.ShowImage(pbx_cardImage, card);
-            PathOfCurrentlyDisplayedImage = card.ImagePath;
+
+            if (card != null)
+            {
+                lbl_cardImage.Text = card.Name;
+                Utilities.ShowImage(pbx_cardImage, card);
+                PathOfCurrentlyDisplayedImage = card.ImagePath;
+            }
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
@@ -85,7 +89,10 @@ namespace CsCardReaderClient
             if (!Cards.ContainsKey(intCardID))
             {
                 var newCard = new Card(intCardID);
-                newCard.LoadData();
+                var gotCard = newCard.LoadData();
+
+                if (!gotCard) { return null; }
+
                 Cards.Add(intCardID, newCard);
             }
 
