@@ -115,27 +115,9 @@ namespace CsCardReaderClient
             var card = Cards[intCardID];
             return card;
         }
-
-        //Image file name	Image file path	Card name	Card type	OCR confidence	Success
-
-
+        
         private void btn_readMagicCard_Click(object sender, EventArgs e)
         {
-            //var cards = extractCardTitles();
-
-            //int totalConfidence = cards.Sum(c => c.Confidence);
-            //int lowestConfidence = cards.Min(c => c.Confidence);
-            //double averageConfidens = totalConfidence / (double)cards.Count;
-            //bool wasSuccessful = (cards.FindIndex(c => !c.Success) < 0);
-
-            //var message = new StringBuilder();
-            //message.AppendLine(String.Format("Total confidence: {0}", totalConfidence));
-            //message.AppendLine(String.Format("Lowest confidence: {0}", lowestConfidence));
-            //message.AppendLine(String.Format("Average confidence: {0}", averageConfidens));
-            //message.AppendLine(String.Format("Read was successful: {0}", wasSuccessful ? "Yes" : "No"));
-
-            //tbx_diskResults.Text = message.ToString();
-
             var myPictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             var openFile = new OpenFileDialog()
             {
@@ -266,21 +248,8 @@ namespace CsCardReaderClient
 
         private void btn_testCardReading_Click(object sender, EventArgs e)
         {
-            //long maxAmount = MtgLibrary.GetMaxCardAmount();
-
-            //string testResult = "";
-            //MtgLibrary.GetResultExample(testResult, 1000);
-
             int sum = MtgLibrary.GetMaxCardAmount();
-
-            //int maxLength = 300;
-            //string result = "";
-            //IntPtr strPtr = Marshal.StringToHGlobalUni(result);
-            //string nullStrPtr = Marshal.PtrToStringAuto(strPtr);
-            //IntPtr str = MtgLibrary.GetString(strPtr, maxLength);
-            //string str1 = Marshal.PtrToStringAuto(strPtr);
-            //string str2 = Marshal.PtrToStringAuto(str);
-
+            
             int maxLength = 300;
             byte[] result = new byte[maxLength];
             MtgLibrary.GetResultExample(result, maxLength);
