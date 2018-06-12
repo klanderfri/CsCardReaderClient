@@ -35,7 +35,7 @@
             this.lbl_cardImage = new System.Windows.Forms.Label();
             this.btn_openImageFolder = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tpg_readMagicCard = new System.Windows.Forms.TabPage();
+            this.tpg_cardReader = new System.Windows.Forms.TabPage();
             this.pbx_extractedCardImage = new System.Windows.Forms.PictureBox();
             this.tbx_diskResults = new System.Windows.Forms.TextBox();
             this.btn_readMagicCard = new System.Windows.Forms.Button();
@@ -44,7 +44,7 @@
             this.btn_testCardReading = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tpg_readMagicCard.SuspendLayout();
+            this.tpg_cardReader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).BeginInit();
             this.tpg_gatherFetcher.SuspendLayout();
             this.SuspendLayout();
@@ -106,7 +106,7 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tpg_readMagicCard);
+            this.tabControl1.Controls.Add(this.tpg_cardReader);
             this.tabControl1.Controls.Add(this.tpg_gatherFetcher);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
@@ -115,18 +115,18 @@
             this.tabControl1.Size = new System.Drawing.Size(597, 426);
             this.tabControl1.TabIndex = 6;
             // 
-            // tpg_readMagicCard
+            // tpg_cardReader
             // 
-            this.tpg_readMagicCard.Controls.Add(this.pbx_extractedCardImage);
-            this.tpg_readMagicCard.Controls.Add(this.tbx_diskResults);
-            this.tpg_readMagicCard.Controls.Add(this.btn_readMagicCard);
-            this.tpg_readMagicCard.Location = new System.Drawing.Point(4, 22);
-            this.tpg_readMagicCard.Name = "tpg_readMagicCard";
-            this.tpg_readMagicCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tpg_readMagicCard.Size = new System.Drawing.Size(589, 400);
-            this.tpg_readMagicCard.TabIndex = 1;
-            this.tpg_readMagicCard.Text = "Card Reader Result";
-            this.tpg_readMagicCard.UseVisualStyleBackColor = true;
+            this.tpg_cardReader.Controls.Add(this.pbx_extractedCardImage);
+            this.tpg_cardReader.Controls.Add(this.tbx_diskResults);
+            this.tpg_cardReader.Controls.Add(this.btn_readMagicCard);
+            this.tpg_cardReader.Location = new System.Drawing.Point(4, 22);
+            this.tpg_cardReader.Name = "tpg_cardReader";
+            this.tpg_cardReader.Padding = new System.Windows.Forms.Padding(3);
+            this.tpg_cardReader.Size = new System.Drawing.Size(589, 400);
+            this.tpg_cardReader.TabIndex = 1;
+            this.tpg_cardReader.Text = "Card Reader";
+            this.tpg_cardReader.UseVisualStyleBackColor = true;
             // 
             // pbx_extractedCardImage
             // 
@@ -207,8 +207,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tpg_readMagicCard.ResumeLayout(false);
-            this.tpg_readMagicCard.PerformLayout();
+            this.tpg_cardReader.ResumeLayout(false);
+            this.tpg_cardReader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_extractedCardImage)).EndInit();
             this.tpg_gatherFetcher.ResumeLayout(false);
             this.tpg_gatherFetcher.PerformLayout();
@@ -226,7 +226,7 @@
         private System.Windows.Forms.Button btn_openImageFolder;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tpg_gatherFetcher;
-        private System.Windows.Forms.TabPage tpg_readMagicCard;
+        private System.Windows.Forms.TabPage tpg_cardReader;
         private System.Windows.Forms.TextBox tbx_diskResults;
         private System.Windows.Forms.Button btn_readMagicCard;
         private System.Windows.Forms.Button btn_testCardReading;
