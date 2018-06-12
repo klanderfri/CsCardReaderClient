@@ -81,6 +81,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardDecoder.cs" />
     <Compile Include="CardTitle.cs" />
     <Compile Include="Connectivity\Card.cs" />
     <Compile Include="Connectivity\Connection.cs" />
