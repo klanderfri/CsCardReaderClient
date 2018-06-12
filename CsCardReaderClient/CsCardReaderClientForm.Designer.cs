@@ -130,6 +130,7 @@
             // 
             // pbx_extractedCardImage
             // 
+            this.pbx_extractedCardImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbx_extractedCardImage.Location = new System.Drawing.Point(369, 117);
             this.pbx_extractedCardImage.Name = "pbx_extractedCardImage";
             this.pbx_extractedCardImage.Size = new System.Drawing.Size(212, 277);
@@ -146,7 +147,7 @@
             // 
             // btn_readMagicCard
             // 
-            this.btn_readMagicCard.Location = new System.Drawing.Point(209, 30);
+            this.btn_readMagicCard.Location = new System.Drawing.Point(8, 31);
             this.btn_readMagicCard.Name = "btn_readMagicCard";
             this.btn_readMagicCard.Size = new System.Drawing.Size(129, 55);
             this.btn_readMagicCard.TabIndex = 0;
