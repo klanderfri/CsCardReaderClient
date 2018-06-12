@@ -227,7 +227,7 @@
             this.MaximizeBox = false;
             this.Name = "CsCardReaderClientForm";
             this.Text = "Magic: the Gathering - Information Fetcher";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.CsCardReaderClientForm_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tpg_cardReader.ResumeLayout(false);

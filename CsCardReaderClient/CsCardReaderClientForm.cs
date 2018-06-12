@@ -1,15 +1,11 @@
 ﻿using CsCardReaderClient.Connectivity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CsCardReaderClient
@@ -23,45 +19,6 @@ namespace CsCardReaderClient
         public CsCardReaderClientForm()
         {
             InitializeComponent();
-        }
-
-        private void btn_fetchCard_Click(object sender, EventArgs e)
-        {
-            if (!tryGetCardID(out IdOfCurrentlyDisplayedImage)) { return; }
-
-            var card = getCard(IdOfCurrentlyDisplayedImage);
-
-            if (card != null)
-            {
-                lbl_cardImage.Text = card.Name;
-                Utilities.ShowImage(pbx_cardImage, card);
-                PathOfCurrentlyDisplayedImage = card.ImagePath;
-            }
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            foreach (var card in Cards)
-            {
-                Directory.Delete(card.Value.ImageFolderPath, true);
-            }
-        }
-
-        private void btn_openImageFolder_Click(object sender, EventArgs e)
-        {
-            if (PathOfCurrentlyDisplayedImage == null)
-            {
-                MessageBox.Show("No image has been shown yet!", "No displayed image", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            Utilities.OpenFolder(PathOfCurrentlyDisplayedImage);
-        }
-
-        private void btn_openGathererWebpage_Click(object sender, EventArgs e)
-        {
-            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", IdOfCurrentlyDisplayedImage);
-            Process.Start(url);
         }
 
         private bool tryGetCardID(out int cardID)
@@ -99,7 +56,46 @@ namespace CsCardReaderClient
             var card = Cards[intCardID];
             return card;
         }
-        
+
+        private void CsCardReaderClientForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            foreach (var card in Cards)
+            {
+                Directory.Delete(card.Value.ImageFolderPath, true);
+            }
+        }
+
+        private void btn_fetchCard_Click(object sender, EventArgs e)
+        {
+            if (!tryGetCardID(out IdOfCurrentlyDisplayedImage)) { return; }
+
+            var card = getCard(IdOfCurrentlyDisplayedImage);
+
+            if (card != null)
+            {
+                lbl_cardImage.Text = card.Name;
+                Utilities.ShowImage(pbx_cardImage, card);
+                PathOfCurrentlyDisplayedImage = card.ImagePath;
+            }
+        }
+
+        private void btn_openImageFolder_Click(object sender, EventArgs e)
+        {
+            if (PathOfCurrentlyDisplayedImage == null)
+            {
+                MessageBox.Show("No image has been shown yet!", "No displayed image", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Utilities.OpenFolder(PathOfCurrentlyDisplayedImage);
+        }
+
+        private void btn_openGathererWebpage_Click(object sender, EventArgs e)
+        {
+            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", IdOfCurrentlyDisplayedImage);
+            Process.Start(url);
+        }
+
         private void btn_readMagicCard_Click(object sender, EventArgs e)
         {
             var decoder = new CardDecoder();
