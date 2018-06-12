@@ -132,60 +132,7 @@ namespace CsCardReaderClient
             tbx_diskResults.Text = decoder.Decode();
             showImage(pbx_extractedCardImage, decoder.PathsToExtractedImages.FirstOrDefault());
         }
-
-        private List<CardTitle> extractCardTitles()
-        {
-            var myPictures = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            var filename = Path.Combine(myPictures, "MtG-cards", "Image Data", "CardTitles.txt");
-
-            var cardTitles = new List<CardTitle>();
-
-            bool hasHandledFileHeader = false;
-            using (var reader = new StreamReader(filename))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    if (!hasHandledFileHeader)
-                    {
-                        hasHandledFileHeader = true;
-                        continue;
-                    }
-
-                    char deliminator = '\t';
-                    int size = line.Count(f => f == deliminator);
-                    var values = new List<string>(size);
-
-                    int index;
-                    do
-                    {
-                        index = line.IndexOf(deliminator);
-                        int length = (index < 0) ? line.Length : index;
-
-                        var value = line.Substring(0, length);
-                        values.Add(value);
-
-                        line = line.Substring(index + 1);
-
-                    } while (index >= 0);
-
-
-                    CardTitle title = new CardTitle()
-                    {
-                        ImageFileName = values[0],
-                        ImageFilePath = values[1],
-                        CardName = values[2],
-                        CardType = Convert.ToInt32(values[3]),
-                        Confidence = Convert.ToInt32(values[4]),
-                        Success = Convert.ToBoolean(Convert.ToUInt32(values[5]))
-                    };
-                    cardTitles.Add(title);
-                }
-            }
-
-            return cardTitles;
-        }
-
+        
         private void btn_testCardReading_Click(object sender, EventArgs e)
         {
             int sum = MtgLibrary.GetMaxCardAmount();
