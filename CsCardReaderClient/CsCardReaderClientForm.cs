@@ -268,6 +268,8 @@ namespace CsCardReaderClient
             byte[] result = new byte[maxLength];
             MtgLibrary.GetResultExample(result, maxLength);
             string str = Encoding.Default.GetString(result);
+
+            MessageBox.Show(str, "Card Read Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
