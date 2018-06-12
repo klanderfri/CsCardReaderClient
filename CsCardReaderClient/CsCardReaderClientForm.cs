@@ -17,6 +17,7 @@ namespace CsCardReaderClient
     public partial class CsCardReaderClientForm : Form
     {
         private string PathOfCurrentlyDisplayedImage = null;
+        private int IdOfCurrentlyDisplayedImage = 0;
         private Dictionary<int, Card> Cards = new Dictionary<int, Card>();
 
         public CsCardReaderClientForm()
@@ -26,10 +27,9 @@ namespace CsCardReaderClient
 
         private void btn_fetchCard_Click(object sender, EventArgs e)
         {
-            int cardID;
-            if (!tryGetCardID(out cardID)) { return; }
+            if (!tryGetCardID(out IdOfCurrentlyDisplayedImage)) { return; }
 
-            var card = getCard(cardID);
+            var card = getCard(IdOfCurrentlyDisplayedImage);
             lbl_cardImage.Text = card.Name;
             showImage(pbx_cardImage, card);
         }
@@ -51,6 +51,12 @@ namespace CsCardReaderClient
             }
 
             openFolder(PathOfCurrentlyDisplayedImage);
+        }
+
+        private void btn_openGathererWebpage_Click(object sender, EventArgs e)
+        {
+            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", IdOfCurrentlyDisplayedImage);
+            Process.Start(url);
         }
 
         private void openFolder(string pathToOpen)
@@ -93,6 +99,10 @@ namespace CsCardReaderClient
         private void showImage(PictureBox box, Card card)
         {
             card.LoadImage();
+
+            var image = Image.FromFile(card.ImagePath);
+            box.Size = new Size(image.Width, image.Height);
+
             showImage(box, card.ImagePath);
             PathOfCurrentlyDisplayedImage = card.ImagePath;
         }
