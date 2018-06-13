@@ -12,13 +12,7 @@ namespace CsCardReaderClient.CardReaderClientForm
         private Card CurrentlyDisplayedCard
         {
             get { return currentlyDisplayedCard; }
-            set
-            {
-                if (value != null)
-                {
-                    currentlyDisplayedCard = value;
-                }
-            }
+            set { currentlyDisplayedCard = value ?? currentlyDisplayedCard; }
         }
         private Card currentlyDisplayedCard;
 
