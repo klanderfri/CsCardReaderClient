@@ -26,12 +26,6 @@ namespace CsCardReaderClient
             box.ImageLocation = fullImagePath;
         }
 
-        public static void OpenFolder(string pathToOpen)
-        {
-            var folderPath = IsFolder(pathToOpen) ? pathToOpen : new FileInfo(pathToOpen).Directory.FullName;
-            Process.Start(folderPath);
-        }
-
         public static bool IsFolder(string path)
         {
             //Implemented as suggested at:
@@ -43,17 +37,23 @@ namespace CsCardReaderClient
             return isFolderPath;
         }
 
-        public static void OpenGathererPage(int cardID)
+        public static void OpenFolder(string pathToOpen)
         {
-            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", cardID);
-            Process.Start(url);
+            var folderPath = IsFolder(pathToOpen) ? pathToOpen : new FileInfo(pathToOpen).Directory.FullName;
+            Process.Start(folderPath);
         }
 
         public static void OpenExeFolder()
         {
             var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
             MessageBox.Show(path, "Exe File Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            Utilities.OpenFolder(path);
+            OpenFolder(path);
+        }
+
+        public static void OpenGathererPage(int cardID)
+        {
+            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", cardID);
+            Process.Start(url);
         }
     }
 }
