@@ -81,9 +81,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Containers\Card.cs" />
     <Compile Include="Helpers\CardDecoder.cs" />
     <Compile Include="Containers\CardTitle.cs" />
-    <Compile Include="Connectivity\Card.cs" />
+    <Compile Include="Connectivity\IntelligentCard.cs" />
     <Compile Include="Connectivity\Connection.cs" />
     <Compile Include="CardReaderClientForm\CsCardReaderClientController.cs" />
     <Compile Include="CardReaderClientForm\CsCardReaderClientForm.cs">

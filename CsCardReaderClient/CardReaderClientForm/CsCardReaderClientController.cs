@@ -11,7 +11,7 @@ namespace CsCardReaderClient.CardReaderClientForm
 {
     public class CsCardReaderClientController : IDisposable
     {
-        private Dictionary<int, Card> Cards = new Dictionary<int, Card>();
+        private Dictionary<int, IntelligentCard> Cards = new Dictionary<int, IntelligentCard>();
         private Dictionary<string, int> NameToID = new Dictionary<string, int>();
         public string NameOfExtractedCard { get; private set; }
 
@@ -23,7 +23,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             }
         }
 
-        public Card FetchCardByID(string strMultiverseID, Label cardNameLabel, PictureBox cardImageBox)
+        public IntelligentCard FetchCardByID(string strMultiverseID, Label cardNameLabel, PictureBox cardImageBox)
         {
             var card = getCardByID(strMultiverseID);
             showCard(cardNameLabel, cardImageBox, card);
@@ -31,7 +31,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             return card;
         }
 
-        public Card FetchCardByName(string cardName, Label cardNameLabel, PictureBox cardImageBox)
+        public IntelligentCard FetchCardByName(string cardName, Label cardNameLabel, PictureBox cardImageBox)
         {
             if (String.IsNullOrWhiteSpace(cardName))
             {
@@ -49,7 +49,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             return card;
         }
 
-        private void showCard(Label cardNameLabel, PictureBox cardImageBox, Card card)
+        private void showCard(Label cardNameLabel, PictureBox cardImageBox, IntelligentCard card)
         {
             if (card != null)
             {
@@ -69,7 +69,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             Utilities.OpenFolder(imagePath);
         }
 
-        public Card UpdateGathererTab(TabControl parentTabControl, Label cardNameLabel, PictureBox cardImageBox, TextBox MultiverseIdBox)
+        public IntelligentCard UpdateGathererTab(TabControl parentTabControl, Label cardNameLabel, PictureBox cardImageBox, TextBox MultiverseIdBox)
         {
             if (String.IsNullOrWhiteSpace(NameOfExtractedCard))
             {
@@ -109,7 +109,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             }
         }
 
-        private Card getCardByID(string strCardID)
+        private IntelligentCard getCardByID(string strCardID)
         {
             int intCardID;
             if (!tryGetCardID(out intCardID, strCardID)) { return null; }
@@ -117,7 +117,7 @@ namespace CsCardReaderClient.CardReaderClientForm
             return getCard(intCardID);
         }
 
-        private Card getCardByName(string cardName)
+        private IntelligentCard getCardByName(string cardName)
         {
             var name = cardName.ToLowerInvariant();
             if (NameToID.ContainsKey(name))
@@ -126,7 +126,7 @@ namespace CsCardReaderClient.CardReaderClientForm
                 return Cards[multiverseID];
             }
 
-            var newCard = new Card();
+            var newCard = new IntelligentCard();
             var gotCard = newCard.LoadData(name);
 
             if (!gotCard) { return null; }
@@ -137,11 +137,11 @@ namespace CsCardReaderClient.CardReaderClientForm
             return newCard;
         }
 
-        private Card getCard(int multiverseID)
+        private IntelligentCard getCard(int multiverseID)
         {
             if (!Cards.ContainsKey(multiverseID))
             {
-                var newCard = new Card(multiverseID);
+                var newCard = new IntelligentCard(multiverseID);
                 var gotCard = newCard.LoadData();
 
                 if (!gotCard) { return null; }

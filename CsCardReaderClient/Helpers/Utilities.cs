@@ -10,7 +10,7 @@ namespace CsCardReaderClient.Helpers
 {
     public class Utilities
     {
-        public static void ShowImage(PictureBox box, Card card)
+        public static void ShowImage(PictureBox box, IntelligentCard card)
         {
             card.LoadImage();
 

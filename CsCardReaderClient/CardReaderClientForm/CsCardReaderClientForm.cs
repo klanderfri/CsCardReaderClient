@@ -9,12 +9,12 @@ namespace CsCardReaderClient.CardReaderClientForm
     {
         private CsCardReaderClientController Controller { get; set; }
 
-        private Card CurrentlyDisplayedCard
+        private IntelligentCard CurrentlyDisplayedCard
         {
             get { return currentlyDisplayedCard; }
             set { currentlyDisplayedCard = value ?? currentlyDisplayedCard; }
         }
-        private Card currentlyDisplayedCard;
+        private IntelligentCard currentlyDisplayedCard;
 
         public CsCardReaderClientForm()
         {

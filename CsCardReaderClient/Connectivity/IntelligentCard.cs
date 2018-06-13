@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using CsCardReaderClient.Containers;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Drawing.Imaging;
@@ -9,18 +10,12 @@ using System.Windows.Forms;
 
 namespace CsCardReaderClient.Connectivity
 {
-    public class Card
+    public class IntelligentCard : Card
     {
-        public int MultiverseID { get; private set; }
-        public string Name { get; private set; }
-        public IEnumerable<string> SplitNames { get; private set; }
-        public string ImageFolderPath { get; private set; }
-        public string ImagePath { get; private set; }
-        public JToken Json { get; private set; }
+        private const string SPLIT_CARD_SEPARATOR = " // ";
+        private const string API_BASE_URI = "https://api.magicthegathering.io/v1/cards";
 
-        public const string SPLIT_CARD_SEPARATOR = " // ";
-
-        public Card(int multiverseID = 0)
+        public IntelligentCard(int multiverseID = 0)
         {
             MultiverseID = multiverseID;
         }
@@ -32,7 +27,7 @@ namespace CsCardReaderClient.Connectivity
 
         private bool loadData(int multiverseID)
         {
-            var uri = String.Format("https://api.magicthegathering.io/v1/cards/{0}", multiverseID);
+            var uri = String.Format("{0}/{1}", API_BASE_URI, multiverseID);
             return loadDataURI(uri, false);
         }
 
@@ -45,7 +40,7 @@ namespace CsCardReaderClient.Connectivity
                 name = names[0];
             }
 
-            var uri = String.Format("https://api.magicthegathering.io/v1/cards?name={0}", name);
+            var uri = String.Format("{0}?name={1}", API_BASE_URI, name);
             return loadDataURI(uri, true, fullName);
         }
 
@@ -62,7 +57,7 @@ namespace CsCardReaderClient.Connectivity
                     foreach (var card in cards)
                     {
                         extractCardData(card);
-                        
+
                         if (hasFoundCorrectCard(cardname)) { break; }
                     }
                 }
@@ -83,7 +78,7 @@ namespace CsCardReaderClient.Connectivity
         private bool hasFoundCorrectCard(string cardname)
         {
             if (cardname == null) { return true; }
-            
+
             string foundCardName = null;
             var isSplitCard = cardname.Contains(SPLIT_CARD_SEPARATOR);
             if (isSplitCard)
@@ -120,7 +115,7 @@ namespace CsCardReaderClient.Connectivity
 
             return success;
         }
-        
+
         private string getTempPath(string filename)
         {
             string parentTempFolder = Path.GetTempPath();
