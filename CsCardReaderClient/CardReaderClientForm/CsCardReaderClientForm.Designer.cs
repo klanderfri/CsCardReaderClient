@@ -132,13 +132,13 @@
             // 
             // btn_fetchGathererResult
             // 
-            this.btn_fetchGathererResult.Enabled = false;
             this.btn_fetchGathererResult.Location = new System.Drawing.Point(167, 31);
             this.btn_fetchGathererResult.Name = "btn_fetchGathererResult";
             this.btn_fetchGathererResult.Size = new System.Drawing.Size(129, 55);
             this.btn_fetchGathererResult.TabIndex = 3;
             this.btn_fetchGathererResult.Text = "Fetch Gatherer Data";
             this.btn_fetchGathererResult.UseVisualStyleBackColor = true;
+            this.btn_fetchGathererResult.Click += new System.EventHandler(this.btn_fetchGathererResult_Click);
             // 
             // pbx_extractedCardImage
             // 

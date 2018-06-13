@@ -8,7 +8,19 @@ namespace CsCardReaderClient.CardReaderClientForm
     public partial class CsCardReaderClientForm : Form
     {
         private CsCardReaderClientController controller;
-        private Card CurrentlyDisplayedCard;
+        private Card currentlyDisplayedCard;
+
+        private Card CurrentlyDisplayedCard
+        {
+            get { return currentlyDisplayedCard; }
+            set
+            {
+                if (value != null)
+                {
+                    currentlyDisplayedCard = value;
+                }
+            }
+        }
 
         public CsCardReaderClientForm()
         {
@@ -23,7 +35,7 @@ namespace CsCardReaderClient.CardReaderClientForm
 
         private void btn_fetchCard_Click(object sender, EventArgs e)
         {
-            CurrentlyDisplayedCard = controller.FetchCard(tbx_multiverseID.Text, lbl_cardImage, pbx_cardImage);
+            CurrentlyDisplayedCard = controller.FetchCardByID(tbx_multiverseID.Text, lbl_cardImage, pbx_cardImage);
         }
 
         private void btn_openImageFolder_Click(object sender, EventArgs e)
@@ -54,6 +66,11 @@ namespace CsCardReaderClient.CardReaderClientForm
         private void pbx_extractedCardImage_Click(object sender, EventArgs e)
         {
             controller.OpenImageFolder(pbx_extractedCardImage.ImageLocation);
+        }
+
+        private void btn_fetchGathererResult_Click(object sender, EventArgs e)
+        {
+            CurrentlyDisplayedCard = controller.UpdateGathererTab(tabControl1, lbl_cardImage, pbx_cardImage, tbx_multiverseID);
         }
     }
 }

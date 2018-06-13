@@ -12,6 +12,8 @@ namespace CsCardReaderClient.CardReaderClientForm
     public class CsCardReaderClientController : IDisposable
     {
         private Dictionary<int, Card> Cards = new Dictionary<int, Card>();
+        private Dictionary<string, int> NameToID = new Dictionary<string, int>();
+        public string NameOfExtractedCard { get; private set; }
 
         public void Dispose()
         {
@@ -21,17 +23,39 @@ namespace CsCardReaderClient.CardReaderClientForm
             }
         }
 
-        public Card FetchCard(string strMultiverseID, Label cardName, PictureBox cardImage)
+        public Card FetchCardByID(string strMultiverseID, Label cardNameLabel, PictureBox cardImageBox)
         {
-            var card = getCard(strMultiverseID);
-
-            if (card != null)
-            {
-                cardName.Text = card.Name;
-                Utilities.ShowImage(cardImage, card);
-            }
+            var card = getCardByID(strMultiverseID);
+            showCard(cardNameLabel, cardImageBox, card);
 
             return card;
+        }
+
+        public Card FetchCardByName(string cardName, Label cardNameLabel, PictureBox cardImageBox)
+        {
+            if (String.IsNullOrWhiteSpace(cardName))
+            {
+                var message = "The card name cannot be null or whitespace!";
+                var parameter = "cardName";
+
+                throw (cardName == null) ?
+                    new ArgumentNullException(parameter, message) :
+                    new ArgumentException(message, parameter);
+            }
+
+            var card = getCardByName(cardName);
+            showCard(cardNameLabel, cardImageBox, card);
+
+            return card;
+        }
+
+        private void showCard(Label cardNameLabel, PictureBox cardImageBox, Card card)
+        {
+            if (card != null)
+            {
+                cardNameLabel.Text = card.Name;
+                Utilities.ShowImage(cardImageBox, card);
+            }
         }
 
         public void OpenImageFolder(string imagePath)
@@ -43,6 +67,21 @@ namespace CsCardReaderClient.CardReaderClientForm
             }
 
             Utilities.OpenFolder(imagePath);
+        }
+
+        public Card UpdateGathererTab(TabControl parentTabControl, Label cardNameLabel, PictureBox cardImageBox, TextBox MultiverseIdBox)
+        {
+            if (String.IsNullOrWhiteSpace(NameOfExtractedCard))
+            {
+                MessageBox.Show("No card has been extracted!", "No card extracted", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            var card = FetchCardByName(NameOfExtractedCard, cardNameLabel, cardImageBox);
+            MultiverseIdBox.Text = Convert.ToString(card.MultiverseID);
+            parentTabControl.SelectedIndex = 1;
+
+            return card;
         }
 
         public void ShowCardReadTest()
@@ -61,14 +100,16 @@ namespace CsCardReaderClient.CardReaderClientForm
         {
             using (var decoder = new CardDecoder())
             {
-                var cardName = decoder.Decode();
-                Utilities.ShowImage(box, decoder.PathsToExtractedImages.FirstOrDefault());
+                var cardData = decoder.Decode();
+                var cardToUse = decoder.PathsToExtractedImages.FirstOrDefault();
+                Utilities.ShowImage(box, cardToUse.Value);
+                NameOfExtractedCard = cardToUse.Key;
 
-                return cardName;
+                return cardData;
             }
         }
 
-        private Card getCard(string strCardID)
+        private Card getCardByID(string strCardID)
         {
             int intCardID;
             if (!tryGetCardID(out intCardID, strCardID)) { return null; }
@@ -76,19 +117,40 @@ namespace CsCardReaderClient.CardReaderClientForm
             return getCard(intCardID);
         }
 
-        private Card getCard(int intCardID)
+        private Card getCardByName(string cardName)
         {
-            if (!Cards.ContainsKey(intCardID))
+            var name = cardName.ToLowerInvariant();
+            if (NameToID.ContainsKey(name))
             {
-                var newCard = new Card(intCardID);
+                int multiverseID = NameToID[name];
+                return Cards[multiverseID];
+            }
+
+            var newCard = new Card();
+            var gotCard = newCard.LoadData(name);
+
+            if (!gotCard) { return null; }
+
+            Cards.Add(newCard.MultiverseID, newCard);
+            NameToID.Add(name, newCard.MultiverseID);
+
+            return newCard;
+        }
+
+        private Card getCard(int multiverseID)
+        {
+            if (!Cards.ContainsKey(multiverseID))
+            {
+                var newCard = new Card(multiverseID);
                 var gotCard = newCard.LoadData();
 
                 if (!gotCard) { return null; }
 
-                Cards.Add(intCardID, newCard);
+                Cards.Add(multiverseID, newCard);
+                NameToID.Add(newCard.Name.ToLowerInvariant(), multiverseID);
             }
 
-            var card = Cards[intCardID];
+            var card = Cards[multiverseID];
             return card;
         }
 

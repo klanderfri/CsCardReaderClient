@@ -9,11 +9,11 @@ namespace CsCardReaderClient.Helpers
 {
     public class CardDecoder : IDisposable
     {
-        public List<string> PathsToExtractedImages { get; private set; }
+        public Dictionary<string, string> PathsToExtractedImages { get; private set; }
 
         public CardDecoder()
         {
-            PathsToExtractedImages = new List<string>();
+            PathsToExtractedImages = new Dictionary<string, string>();
         }
 
         public void Dispose() { }
@@ -48,13 +48,14 @@ namespace CsCardReaderClient.Helpers
 
             var values = str.Split(';').Reverse().Skip(1).Reverse().ToList();
             var display = new StringBuilder();
-            PathsToExtractedImages = new List<string>(values.Count / 5);
+            PathsToExtractedImages = new Dictionary<string, string>(values.Count / 5);
             for (int i = 0; i < values.Count; i += 5)
             {
+                var cardName = values[i + 1];
                 var extractedImagePath = Path.Combine(outputFolder, "Extracted Cards", Path.GetFileName(values[i]));
-                PathsToExtractedImages.Add(extractedImagePath);
+                PathsToExtractedImages.Add(cardName, extractedImagePath);
 
-                display.AppendLine(String.Format("Card name: {0}", values[i + 1]));
+                display.AppendLine(String.Format("Card name: {0}", cardName));
                 display.AppendLine(String.Format("Card type: {0}", getCardType(Convert.ToInt32(values[i + 2]))));
                 display.AppendLine(String.Format("OCR confidence: {0}", Convert.ToInt32(values[i + 3])));
                 display.AppendLine(String.Format("Success: {0}", Convert.ToBoolean(Convert.ToInt32(values[i + 4])) ? "True" : "False"));
