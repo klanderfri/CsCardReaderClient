@@ -14,8 +14,10 @@ namespace CsCardReaderClient.Helpers
         {
             card.LoadImage();
 
-            var image = Image.FromFile(card.ImagePath);
-            box.Size = new Size(image.Width, image.Height);
+            using (var image = Image.FromFile(card.ImagePath))
+            {
+                box.Size = new Size(image.Width, image.Height);
+            }
 
             ShowImage(box, card.ImagePath);
         }
