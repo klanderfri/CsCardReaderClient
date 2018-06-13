@@ -1,7 +1,9 @@
 ﻿using CsCardReaderClient.Connectivity;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace CsCardReaderClient
@@ -39,6 +41,19 @@ namespace CsCardReaderClient
             var isFolderPath = attr.HasFlag(FileAttributes.Directory);
 
             return isFolderPath;
+        }
+
+        public static void OpenGathererPage(int cardID)
+        {
+            var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", cardID);
+            Process.Start(url);
+        }
+
+        public static void OpenExeFolder()
+        {
+            var path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            MessageBox.Show(path, "Exe File Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Utilities.OpenFolder(path);
         }
     }
 }

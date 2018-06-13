@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace CsCardReaderClient
 {
-    public class CardDecoder
+    public class CardDecoder : IDisposable
     {
         public List<string> PathsToExtractedImages { get; private set; }
 
@@ -15,6 +15,8 @@ namespace CsCardReaderClient
         {
             PathsToExtractedImages = new List<string>();
         }
+
+        public void Dispose() { }
 
         public string Decode()
         {
