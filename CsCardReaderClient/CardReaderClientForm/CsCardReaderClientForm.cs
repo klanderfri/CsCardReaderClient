@@ -50,5 +50,10 @@ namespace CsCardReaderClient.CardReaderClientForm
         {
             Utilities.OpenExeFolder();
         }
+
+        private void pbx_extractedCardImage_Click(object sender, EventArgs e)
+        {
+            controller.OpenImageFolder(pbx_extractedCardImage.ImageLocation);
+        }
     }
 }

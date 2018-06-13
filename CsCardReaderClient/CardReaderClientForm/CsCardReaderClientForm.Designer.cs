@@ -36,14 +36,14 @@
             this.btn_openImageFolder = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tpg_cardReader = new System.Windows.Forms.TabPage();
+            this.btn_fetchGathererResult = new System.Windows.Forms.Button();
             this.pbx_extractedCardImage = new System.Windows.Forms.PictureBox();
             this.tbx_diskResults = new System.Windows.Forms.TextBox();
             this.btn_readMagicCard = new System.Windows.Forms.Button();
             this.tpg_gatherFetcher = new System.Windows.Forms.TabPage();
+            this.btn_openGathererWebpage = new System.Windows.Forms.Button();
             this.btn_openExePath = new System.Windows.Forms.Button();
             this.btn_testCardReading = new System.Windows.Forms.Button();
-            this.btn_fetchGathererResult = new System.Windows.Forms.Button();
-            this.btn_openGathererWebpage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tpg_cardReader.SuspendLayout();
@@ -130,6 +130,16 @@
             this.tpg_cardReader.Text = "Card Reader";
             this.tpg_cardReader.UseVisualStyleBackColor = true;
             // 
+            // btn_fetchGathererResult
+            // 
+            this.btn_fetchGathererResult.Enabled = false;
+            this.btn_fetchGathererResult.Location = new System.Drawing.Point(167, 31);
+            this.btn_fetchGathererResult.Name = "btn_fetchGathererResult";
+            this.btn_fetchGathererResult.Size = new System.Drawing.Size(129, 55);
+            this.btn_fetchGathererResult.TabIndex = 3;
+            this.btn_fetchGathererResult.Text = "Fetch Gatherer Data";
+            this.btn_fetchGathererResult.UseVisualStyleBackColor = true;
+            // 
             // pbx_extractedCardImage
             // 
             this.pbx_extractedCardImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -138,6 +148,7 @@
             this.pbx_extractedCardImage.Size = new System.Drawing.Size(212, 277);
             this.pbx_extractedCardImage.TabIndex = 2;
             this.pbx_extractedCardImage.TabStop = false;
+            this.pbx_extractedCardImage.Click += new System.EventHandler(this.pbx_extractedCardImage_Click);
             // 
             // tbx_diskResults
             // 
@@ -176,6 +187,16 @@
             this.tpg_gatherFetcher.Text = "The Gatherer";
             this.tpg_gatherFetcher.UseVisualStyleBackColor = true;
             // 
+            // btn_openGathererWebpage
+            // 
+            this.btn_openGathererWebpage.Location = new System.Drawing.Point(11, 107);
+            this.btn_openGathererWebpage.Name = "btn_openGathererWebpage";
+            this.btn_openGathererWebpage.Size = new System.Drawing.Size(175, 23);
+            this.btn_openGathererWebpage.TabIndex = 8;
+            this.btn_openGathererWebpage.Text = "Open Gatherer Webpage";
+            this.btn_openGathererWebpage.UseVisualStyleBackColor = true;
+            this.btn_openGathererWebpage.Click += new System.EventHandler(this.btn_openGathererWebpage_Click);
+            // 
             // btn_openExePath
             // 
             this.btn_openExePath.Location = new System.Drawing.Point(11, 210);
@@ -195,26 +216,6 @@
             this.btn_testCardReading.Text = "Test Card Reading";
             this.btn_testCardReading.UseVisualStyleBackColor = true;
             this.btn_testCardReading.Click += new System.EventHandler(this.btn_testCardReading_Click);
-            // 
-            // btn_fetchGathererResult
-            // 
-            this.btn_fetchGathererResult.Enabled = false;
-            this.btn_fetchGathererResult.Location = new System.Drawing.Point(167, 31);
-            this.btn_fetchGathererResult.Name = "btn_fetchGathererResult";
-            this.btn_fetchGathererResult.Size = new System.Drawing.Size(129, 55);
-            this.btn_fetchGathererResult.TabIndex = 3;
-            this.btn_fetchGathererResult.Text = "Fetch Gatherer Data";
-            this.btn_fetchGathererResult.UseVisualStyleBackColor = true;
-            // 
-            // btn_openGathererWebpage
-            // 
-            this.btn_openGathererWebpage.Location = new System.Drawing.Point(11, 107);
-            this.btn_openGathererWebpage.Name = "btn_openGathererWebpage";
-            this.btn_openGathererWebpage.Size = new System.Drawing.Size(175, 23);
-            this.btn_openGathererWebpage.TabIndex = 8;
-            this.btn_openGathererWebpage.Text = "Open Gatherer Webpage";
-            this.btn_openGathererWebpage.UseVisualStyleBackColor = true;
-            this.btn_openGathererWebpage.Click += new System.EventHandler(this.btn_openGathererWebpage_Click);
             // 
             // CsCardReaderClientForm
             // 
