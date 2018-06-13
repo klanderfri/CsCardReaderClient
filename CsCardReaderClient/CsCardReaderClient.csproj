@@ -83,7 +83,6 @@
   <ItemGroup>
     <Compile Include="Containers\Card.cs" />
     <Compile Include="Helpers\CardDecoder.cs" />
-    <Compile Include="Containers\CardTitle.cs" />
     <Compile Include="Connectivity\IntelligentCard.cs" />
     <Compile Include="Connectivity\Connection.cs" />
     <Compile Include="CardReaderClientForm\CsCardReaderClientController.cs" />
