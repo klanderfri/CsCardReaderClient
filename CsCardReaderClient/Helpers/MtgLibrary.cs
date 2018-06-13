@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace CsCardReaderClient
+namespace CsCardReaderClient.Helpers
 {
     public class MtgLibrary
     {

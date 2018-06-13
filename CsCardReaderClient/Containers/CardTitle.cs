@@ -1,4 +1,4 @@
-﻿namespace CsCardReaderClient
+﻿namespace CsCardReaderClient.Containers
 {
     public class CardTitle
     {

@@ -1,8 +1,9 @@
 ﻿using CsCardReaderClient.Connectivity;
+using CsCardReaderClient.Helpers;
 using System;
 using System.Windows.Forms;
 
-namespace CsCardReaderClient
+namespace CsCardReaderClient.CardReaderClientForm
 {
     public partial class CsCardReaderClientForm : Form
     {

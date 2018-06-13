@@ -1,4 +1,5 @@
 ﻿using CsCardReaderClient.Connectivity;
+using CsCardReaderClient.Helpers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CsCardReaderClient
+namespace CsCardReaderClient.CardReaderClientForm
 {
     public class CsCardReaderClientController : IDisposable
     {

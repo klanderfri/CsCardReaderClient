@@ -1,4 +1,4 @@
-﻿namespace CsCardReaderClient
+﻿namespace CsCardReaderClient.CardReaderClientForm
 {
     partial class CsCardReaderClientForm
     {

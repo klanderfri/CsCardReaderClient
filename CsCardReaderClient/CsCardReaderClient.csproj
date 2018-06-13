@@ -85,18 +85,18 @@
     <Compile Include="Containers\CardTitle.cs" />
     <Compile Include="Connectivity\Card.cs" />
     <Compile Include="Connectivity\Connection.cs" />
-    <Compile Include="CsCardReaderClient\CsCardReaderClientController.cs" />
-    <Compile Include="CsCardReaderClient\CsCardReaderClientForm.cs">
+    <Compile Include="CardReaderClientForm\CsCardReaderClientController.cs" />
+    <Compile Include="CardReaderClientForm\CsCardReaderClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CsCardReaderClient\CsCardReaderClientForm.Designer.cs">
+    <Compile Include="CardReaderClientForm\CsCardReaderClientForm.Designer.cs">
       <DependentUpon>CsCardReaderClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MtgLibrary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Helpers\Utilities.cs" />
-    <EmbeddedResource Include="CsCardReaderClient\CsCardReaderClientForm.resx">
+    <EmbeddedResource Include="CardReaderClientForm\CsCardReaderClientForm.resx">
       <DependentUpon>CsCardReaderClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -108,7 +108,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="CsCardReaderClient\CsCardReaderClient_TemporaryKey.pfx" />
+    <None Include="CardReaderClientForm\CsCardReaderClient_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

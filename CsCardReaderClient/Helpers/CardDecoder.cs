@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CsCardReaderClient
+namespace CsCardReaderClient.Helpers
 {
     public class CardDecoder : IDisposable
     {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace CsCardReaderClient
+namespace CsCardReaderClient.Helpers
 {
     public class Utilities
     {
