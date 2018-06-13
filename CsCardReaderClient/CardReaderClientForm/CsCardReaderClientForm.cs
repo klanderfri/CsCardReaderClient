@@ -7,8 +7,7 @@ namespace CsCardReaderClient.CardReaderClientForm
 {
     public partial class CsCardReaderClientForm : Form
     {
-        private CsCardReaderClientController controller;
-        private Card currentlyDisplayedCard;
+        private CsCardReaderClientController Controller { get; set; }
 
         private Card CurrentlyDisplayedCard
         {
@@ -21,26 +20,27 @@ namespace CsCardReaderClient.CardReaderClientForm
                 }
             }
         }
+        private Card currentlyDisplayedCard;
 
         public CsCardReaderClientForm()
         {
             InitializeComponent();
-            controller = new CsCardReaderClientController();
+            Controller = new CsCardReaderClientController();
         }
 
         private void CsCardReaderClientForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            controller.Dispose();
+            Controller.Dispose();
         }
 
         private void btn_fetchCard_Click(object sender, EventArgs e)
         {
-            CurrentlyDisplayedCard = controller.FetchCardByID(tbx_multiverseID.Text, lbl_cardImage, pbx_cardImage);
+            CurrentlyDisplayedCard = Controller.FetchCardByID(tbx_multiverseID.Text, lbl_cardImage, pbx_cardImage);
         }
 
         private void btn_openImageFolder_Click(object sender, EventArgs e)
         {
-            controller.OpenImageFolder(CurrentlyDisplayedCard?.ImagePath);
+            Controller.OpenImageFolder(CurrentlyDisplayedCard?.ImagePath);
         }
 
         private void btn_openGathererWebpage_Click(object sender, EventArgs e)
@@ -50,12 +50,12 @@ namespace CsCardReaderClient.CardReaderClientForm
 
         private void btn_readMagicCard_Click(object sender, EventArgs e)
         {
-            tbx_diskResults.Text = controller.ReadCard(pbx_extractedCardImage);
+            tbx_diskResults.Text = Controller.ReadCard(pbx_extractedCardImage);
         }
         
         private void btn_testCardReading_Click(object sender, EventArgs e)
         {
-            controller.ShowCardReadTest();
+            Controller.ShowCardReadTest();
         }
 
         private void btn_openExePath_Click(object sender, EventArgs e)
@@ -65,12 +65,12 @@ namespace CsCardReaderClient.CardReaderClientForm
 
         private void pbx_extractedCardImage_Click(object sender, EventArgs e)
         {
-            controller.OpenImageFolder(pbx_extractedCardImage.ImageLocation);
+            Controller.OpenImageFolder(pbx_extractedCardImage.ImageLocation);
         }
 
         private void btn_fetchGathererResult_Click(object sender, EventArgs e)
         {
-            CurrentlyDisplayedCard = controller.UpdateGathererTab(tabControl1, lbl_cardImage, pbx_cardImage, tbx_multiverseID);
+            CurrentlyDisplayedCard = Controller.UpdateGathererTab(tabControl1, lbl_cardImage, pbx_cardImage, tbx_multiverseID);
         }
     }
 }
