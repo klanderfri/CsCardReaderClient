@@ -42,19 +42,30 @@ namespace CsCardReaderClient.Connectivity
             //https://stackoverflow.com/a/24797679/1997617
 
             bool success = false;
-            WebClient client = new WebClient();
-            Stream stream = client.OpenRead(targetURL);
-            Bitmap bitmap = new Bitmap(stream);
 
-            if (bitmap != null)
+            using (WebClient client = new WebClient())
             {
-                bitmap.Save(destinationFilepath, destinationImageType);
-                success = true;
-            }
+                Stream stream = null;
+                try
+                {
+                    stream = client.OpenRead(targetURL);
+                    Bitmap bitmap = new Bitmap(stream);
 
-            stream.Flush();
-            stream.Close();
-            client.Dispose();
+                    if (bitmap != null)
+                    {
+                        bitmap.Save(destinationFilepath, destinationImageType);
+                        success = true;
+                    }
+                }
+                finally
+                {
+                    if (stream != null)
+                    {
+                        stream.Flush();
+                        stream.Close();
+                    }
+                }
+            }
 
             return success;
         }
