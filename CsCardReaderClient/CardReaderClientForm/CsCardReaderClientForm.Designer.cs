@@ -44,6 +44,7 @@
             this.btn_openGathererWebpage = new System.Windows.Forms.Button();
             this.btn_openExePath = new System.Windows.Forms.Button();
             this.btn_testCardReading = new System.Windows.Forms.Button();
+            this.btn_openSystemFolder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_cardImage)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tpg_cardReader.SuspendLayout();
@@ -170,6 +171,7 @@
             // 
             // tpg_gatherFetcher
             // 
+            this.tpg_gatherFetcher.Controls.Add(this.btn_openSystemFolder);
             this.tpg_gatherFetcher.Controls.Add(this.btn_openGathererWebpage);
             this.tpg_gatherFetcher.Controls.Add(this.btn_openExePath);
             this.tpg_gatherFetcher.Controls.Add(this.btn_testCardReading);
@@ -203,7 +205,7 @@
             this.btn_openExePath.Name = "btn_openExePath";
             this.btn_openExePath.Size = new System.Drawing.Size(175, 23);
             this.btn_openExePath.TabIndex = 7;
-            this.btn_openExePath.Text = "Open exe Path";
+            this.btn_openExePath.Text = "Open .exe Path";
             this.btn_openExePath.UseVisualStyleBackColor = true;
             this.btn_openExePath.Click += new System.EventHandler(this.btn_openExePath_Click);
             // 
@@ -216,6 +218,16 @@
             this.btn_testCardReading.Text = "Test Card Reading";
             this.btn_testCardReading.UseVisualStyleBackColor = true;
             this.btn_testCardReading.Click += new System.EventHandler(this.btn_testCardReading_Click);
+            // 
+            // btn_openSystemFolder
+            // 
+            this.btn_openSystemFolder.Location = new System.Drawing.Point(11, 239);
+            this.btn_openSystemFolder.Name = "btn_openSystemFolder";
+            this.btn_openSystemFolder.Size = new System.Drawing.Size(175, 23);
+            this.btn_openSystemFolder.TabIndex = 9;
+            this.btn_openSystemFolder.Text = "Open System Folder";
+            this.btn_openSystemFolder.UseVisualStyleBackColor = true;
+            this.btn_openSystemFolder.Click += new System.EventHandler(this.btn_openSystemFolder_Click);
             // 
             // CsCardReaderClientForm
             // 
@@ -258,6 +270,7 @@
         private System.Windows.Forms.Button btn_openExePath;
         private System.Windows.Forms.Button btn_fetchGathererResult;
         private System.Windows.Forms.Button btn_openGathererWebpage;
+        private System.Windows.Forms.Button btn_openSystemFolder;
     }
 }
 

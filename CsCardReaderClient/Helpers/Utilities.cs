@@ -52,6 +52,13 @@ namespace CsCardReaderClient.Helpers
             OpenFolder(path);
         }
 
+        public static void OpenSystemFolder()
+        {
+            var path = Path.GetDirectoryName(Environment.SystemDirectory);
+            MessageBox.Show(path, "System Folder Path", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            OpenFolder(path);
+        }
+
         public static void OpenGathererPage(int cardID)
         {
             var url = String.Format("http://gatherer.wizards.com/Pages/Card/Details.aspx?multiverseid={0}", cardID);

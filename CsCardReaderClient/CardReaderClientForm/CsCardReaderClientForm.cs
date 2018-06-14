@@ -66,5 +66,10 @@ namespace CsCardReaderClient.CardReaderClientForm
         {
             CurrentlyDisplayedCard = Controller.UpdateGathererTab(tabControl1, lbl_cardImage, pbx_cardImage, tbx_multiverseID);
         }
+
+        private void btn_openSystemFolder_Click(object sender, EventArgs e)
+        {
+            Utilities.OpenSystemFolder();
+        }
     }
 }
