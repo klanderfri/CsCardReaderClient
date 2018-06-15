@@ -152,7 +152,7 @@
     <Content Include="debugdll\opencv_videoio341d.dll" />
     <Content Include="debugdll\tiffd.dll" />
     <Content Include="debugdll\zlibd1.dll" />
-    <Content Include="deployment\vc_redist.x86.exe" />
+    <Content Include="deployment\vcredist_x86.exe" />
     <Content Include="dll\boost_filesystem-vc141-mt-x32-1_66.dll" />
     <Content Include="dll\boost_system-vc141-mt-x32-1_66.dll" />
     <Content Include="dll\CardReaderLibrary.dll" />
